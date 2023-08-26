@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Owens</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        .ceo {
+            font-size: 1.5em;
+        }
+
+        .owensConstruction {
+            font-size: 1.2em;
+        }
+
+        .mobileTitle {
+            text-align: center;
+        }
+
+        /* Media query for desktop screens */
+        @media (min-width: 768px) {
+            .mobileTitle {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div id="headerContent">
+            <img src="/static/logo.png" alt="Company Logo" id="companyLogo">
+            <img src="https://www.freepnglogos.com/uploads/better-business-bureau-png-logo/black-emblem-better-business-bureau-logo-png-7.png" alt="BBB Logo" id="bbbLogo">
+            <div>
+                <h1>Michael Owens</h1>
+                <p></p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="modelSection">
+            <div class="modelContainer">
+                <model-viewer src="/static/mike.glb" alt="3D Model of Mike" 
+                    auto-rotate 
+                    camera-controls
+                    ar 
+                    background-color="#FFFFFF"
+                    id="modelViewer">
+                </model-viewer>
+                <button id="arButton">View in AR</button>
+                <img src="/static/bbb-logo.png" alt="BBB Logo" id="bbbLogo">
+            </div>
+        </section>
+        
+        <!-- Mobile-specific title -->
+        <div class="mobileTitle">
+            <span class="ceo">CEO</span>
+            <span class="owensConstruction">Owens Construction</span>
+        </div>
+
+        <div class="overlayContent">
+            <section id="infoSection">
+                <h2>About Me</h2>
+                <p>Entrepreneur & Investor</p>
+                <h2>Contact</h2>
+                <p>Email: mykal372002@yahoo.com</p>
+                <a href="tel:(330) 507-5195" class="phoneNum">(330) 507-5195</a>
+                <h2>Follow Me</h2>
+                <div id="socialMedia">
+                    <a href="https://www.google.com/search?q=Owen's+Construction+%26+Roofing" class="socialBtn googleReviewsBtn" target="_blank"><i class="fas fa-star"></i> Google Reviews</a>
+                    <a href="https://www.facebook.com/owensroofs" class="socialBtn facebookBtn" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://owensroofs.com/" class="socialBtn websiteBtn" target="_blank"><i class="fas fa-globe-americas"></i> Website</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/static/arActivation.js"></script>
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const modelViewer = document.querySelector("#modelViewer");
+    const arButton = document.querySelector("#arButton");
+
+    arButton.addEventListener("click", function() {
+        if (modelViewer.canActivateAR) {
+            modelViewer.activateAR();
+        } else {
+            alert("AR is not available on this device.");
+        }
+    });
+
+    // Toggle interaction mode when the model is clicked
+    modelViewer.addEventListener('click', function() {
+        if (isInteracting) {
+            modelViewer.removeAttribute('camera-controls');
+            modelViewer.setAttribute('auto-rotate', '');
+            isInteracting = false;
+        } else {
+            modelViewer.setAttribute('camera-controls', '');
+            modelViewer.removeAttribute('auto-rotate');
+            isInteracting = true;
+        }
+    });
+
+    // Revert to default state when the mouse is released or moves out of the model viewer area
+    modelViewer.addEventListener('mouseup', revertToDefault);
+    modelViewer.addEventListener('mouseleave', revertToDefault); // Using mouseleave instead of mouseout
+
+    function revertToDefault() {
+        if (isInteracting) {
+            modelViewer.removeAttribute('camera-controls');
+            modelViewer.setAttribute('auto-rotate', '');
+            isInteracting = false;
+        }
+    }
+});
+
+
+    </script>
+    <script>
+    console.log("Initializing script");
+
+// Ensure THREE.js and OrbitControls are available
+if (typeof THREE === 'undefined' || typeof THREE.OrbitControls === 'undefined') {
+    console.error("THREE.js or OrbitControls not loaded");
+    return;
+}
+
+// Initialize scene, camera, and renderer
+const scene = new THREE.Scene();
+const container = document.getElementById('modelContainer');
+
+// Ensure the container has some size
+if (!container.clientWidth || !container.clientHeight) {
+    container.style.width = '800px';
+    container.style.height = '600px';
+}
+
+const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true }); 
+
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setClearColor(0xaaaaaa); 
+container.appendChild(renderer.domElement);
+
+console.log("Added renderer to container");
+
+const controls = new THREE.OrbitControls(camera, container);
+
+const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(50, 50, 50);
+scene.add(pointLight);
+
+console.log("Added lights to scene");
+
+camera.position.z = 50;
+
+const loader = new THREE.GLTFLoader();
+loader.load('/static/mike.glb', 
+    (gltf) => {
+        console.log("Successfully loaded GLB model", gltf);
+        scene.add(gltf.scene);
+        animate();
+    }, 
+    (xhr) => {
+        console.log("Model " + (xhr.loaded / xhr.total * 100) + "% loaded");
+    }, 
+    (error) => {
+        console.error("An error occurred while loading the GLB model:", error);
+    }
+);
+
+console.log("Set up GLTFLoader");
+
+function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+console.log("Set up animation loop");
+
+    </script>
+    </body>
+
+</html>

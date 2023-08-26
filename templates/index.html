@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Owens</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        .ceo {
+            font-size: 1.5em;
+        }
+
+        .owensConstruction {
+            font-size: 1.2em;
+        }
+
+        .mobileTitle {
+            text-align: center;
+        }
+
+        /* Media query for desktop screens */
+        @media (min-width: 768px) {
+            .mobileTitle {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div id="headerContent">
+            <img src="/static/logo.png" alt="Company Logo" id="companyLogo">
+            <img src="https://www.freepnglogos.com/uploads/better-business-bureau-png-logo/black-emblem-better-business-bureau-logo-png-7.png" alt="BBB Logo" id="bbbLogo">
+            <div>
+                <h1>Michael Owens</h1>
+                <p></p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="modelSection">
+            <div class="modelContainer">
+                <model-viewer src="/static/mike.glb" alt="3D Model of Mike" 
+                    auto-rotate 
+                    camera-controls
+                    ar 
+                    background-color="#FFFFFF"
+                    id="modelViewer">
+                </model-viewer>
+                <button id="arButton">View in AR</button>
+                <img src="/static/bbb-logo.png" alt="BBB Logo" id="bbbLogo">
+            </div>
+        </section>
+        
+        <!-- Mobile-specific title -->
+        <div class="mobileTitle">
+            <span class="ceo">CEO</span>
+            <span class="owensConstruction">Owens Construction</span>
+        </div>
+
+        <div class="overlayContent">
+            <section id="infoSection">
+                <h2>About Me</h2>
+                <p>Entrepreneur & Investor</p>
+                <h2>Contact</h2>
+                <p>Email: mykal372002@yahoo.com</p>
+                <a href="tel:(330) 507-5195" class="phoneNum">(330) 507-5195</a>
+                <h2>Follow Me</h2>
+                <div id="socialMedia">
+                    <a href="https://www.google.com/search?q=Owen's+Construction+%26+Roofing" class="socialBtn googleReviewsBtn" target="_blank"><i class="fas fa-star"></i> Google Reviews</a>
+                    <a href="https://www.facebook.com/owensroofs" class="socialBtn facebookBtn" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://owensroofs.com/" class="socialBtn websiteBtn" target="_blank"><i class="fas fa-globe-americas"></i> Website</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/static/arActivation.js"></script>
+
+</body>
+
+</html>

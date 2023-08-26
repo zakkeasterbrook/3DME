@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test GLB</title>
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+
+<div id="modelContainer" style="width: 800px; height: 800px;"></div>
+
+<script>
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, 800 / 800, 0.1, 1000 );
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( 800, 800 );
+    document.getElementById( 'modelContainer' ).appendChild( renderer.domElement );
+
+    var light = new THREE.PointLight( 0xffffff );
+    light.position.set( 10, 10, 10 );
+    scene.add( light );
+
+    var loader = new THREE.GLTFLoader();
+    loader.load( 'mike.glb', function ( gltf ) {
+        scene.add( gltf.scene );
+        camera.position.z = 5;
+    }, undefined, function ( error ) {
+        console.error( error );
+    } );
+
+    var animate = function () {
+        requestAnimationFrame( animate );
+        renderer.render(scene, camera);
+    };
+
+    animate();
+</script>
+
+</body>
+</html>
