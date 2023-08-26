@@ -1,0 +1,311 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #a70202, #c90303, #a70202);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200%;
+}
+
+header h1 {
+    font-size: 2.5em;  /* This was previously 3.5em */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(left, #FFFFFF, #F7F7F7, #FFFFFF);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-left: 10px;
+}
+
+header p {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(left, #FFFFFF, #F7F7F7, #FFFFFF);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#headerContent {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+}
+
+#companyLogo {
+    width: 220px;
+    height: auto;
+    margin-right: 10px;
+    max-width: 50%;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#bbbLogo {
+    position: absolute;
+    width: 80px;
+    bottom: 1%;
+    left: 75%;
+    transform: translateX(-50%);
+}
+
+main {
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 100px;
+    position: relative;
+}
+
+#modelSection {
+    flex: 0 0 50%;
+}
+
+.modelContainer {
+    width: 160vh;
+    height: 90vh;
+    position: fixed;
+    top: 6%;
+    left: 75%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+model-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+    z-index: 10;
+}
+
+.overlayContent {
+    background-color: rgba(133, 132, 132, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    transition: transform 0.3s;
+    width: 120%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+     /* Add this line */
+}
+
+
+
+.modelContainer {
+    z-index: 1;
+}
+
+.titleContainer {
+    text-align: center;
+    margin-top: 10px;  /* Reduced margin-top to move the title up */
+    font-size: 1.5em;  /* Reduced from 2em */
+    margin-left: 20px;  /* Increased margin-left to push to the left */
+    z-index: 2;
+    width: 100%;
+}
+
+#arButton {
+    padding: 8px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#arButton:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
+
+#infoSection {
+    margin-left: -20px;  /* Negative value moves it to the left */
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+#socialMedia a {
+    display: inline-block;
+    margin: 10px 15px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(left, #300108, #0a0005, #14000b);
+    -webkit-background-clip: text;
+    color: transparent;
+    border: 2px solid rgba(25, 1, 1, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    pointer-events: auto;
+}
+
+#socialMedia a:hover {
+    transform: scale(1.05);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.phoneNum {
+    background: linear-gradient(145deg, #2a2a2a, #3e3e3e);
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    margin: 10px 0;
+    text-decoration: none;
+    box-shadow: 5px 5px 15px #1a1a1a, 
+               -5px -5px 15px #4a4a4a;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.phoneNum:hover {
+    box-shadow: 3px 3px 10px #1a1a1a, 
+               -3px -3px 10px #4a4a4a;
+    transform: translateY(-2px);
+}
+
+
+.mobileTitle {
+    text-align: left;  /* Aligned to left */
+    margin-top: -50px;
+    font-size: 2.1em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(left, #FFFFFF, #F7F7F7, #FFFFFF);
+    -webkit-background-clip: text;
+    color: transparent;
+    z-index: 2;
+    position: absolute;
+    margin-left: -20px;  /* Move it to the left more */
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+    /* Adjust header font sizes */
+    header h1 {
+        font-size: 1.3em;  /* Adjusted for mobile, this was previously 1.8em */
+        margin-left: 7px;
+        display: block; 
+    }
+
+    header p {
+        font-size: 0.5em;
+        margin-left: 5px;
+    }
+
+    /* Adjust company logo size */
+    #companyLogo {
+        width: 100px;
+        height: auto;
+    }
+
+    /* Center align title and adjust margin */
+    .titleContainer {
+        text-align: center;
+        margin-top: 1px;  /* Reduced margin-top for mobile view */
+        margin-left: 3px;  /* Adjusted margin-left for mobile view */
+        font-size: 1.2em;  /* Reduced from 1.5em for mobile view */
+        flex: 1;
+    }
+
+    /* Adjust overlay content padding, font size, and size */
+    .overlayContent {
+        padding: 5px;  /* Reduced padding for mobile view */
+        font-size: 0.75em;
+        flex: 0.5;
+        max-width: 60%;
+        margin-left: -20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;  /* Adjusted margin-left for mobile view */
+    }
+
+    /* Restore model container dimensions and positioning */
+    .modelContainer {
+        width: 110vh;
+        height: 70vh;
+        position: fixed;
+        top: 6%;
+        left: 75%;
+        transform: translateX(-50%);
+    }
+
+    /* Adjust individual sections within overlay content */
+    #infoSection {
+        text-align: center;
+        margin-left: 0;
+    }
+    #socialMedia a {
+        margin: 7px 10px;
+        padding: 7px 15px;
+    }
+
+    .phoneNum {
+        font-size: 14px;
+        padding: 6px 15px;
+    }
+
+    /* Display mobile title */
+    .mobileTitle {
+        font-size: 0.75em; /* Adjusted size for mobile */
+    }
+
+    /* Header text */
+    header p {
+        display: none;
+    }
+
+    /* Ensure main content direction is columnar on mobile */
+    main {
+        flex-direction: column;
+    }
+
+    /* Restore AR button styling */
+    #arButton {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+
+
